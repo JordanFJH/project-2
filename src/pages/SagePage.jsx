@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SageTransform from "../components/SageTransform";
+import SageResults from "./SageResults";
 import { sagefy } from "../components/sagefy";
 
 function SagePage(props) {
@@ -8,6 +9,7 @@ function SagePage(props) {
     let [input, setInput] = useState("");
     let [name, setName] = useState("");
     let [truePhrase, setTruePhase] = useState(false);
+    let [showResult, setShowResult] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
     const [phrase, setPhrase] = useState([]);
 
@@ -23,10 +25,11 @@ function SagePage(props) {
         if (!input || !name) { // Does nothing if input fields are empty
             return;
         }
+        setSagePhrase([]);
         let arr = input.split(" ");
         setTruePhase(true);
         setPhrase(arr);
-        arr.map((word) => {sagefy(word, setSagePhrase, sagePhrase, newWord, setNewWord)});
+        arr.map((word) => { sagefy(word, setSagePhrase, sagePhrase, newWord, setNewWord) });
     }
 
     // function handleTransform(word) {
@@ -44,22 +47,28 @@ function SagePage(props) {
         )
     }
 
+    function sageMain() {
+        return (
+            <div className="sage-main">
+                <h1>This is the page for Sage Wisdom Maker</h1>
+                <h3>Enter Sage Name:</h3>
+                <input type="text" value={name} onChange={handleName} />
+                <br />
+                <h3>Enter Phrase to Sagify:</h3>
+                <input type="text" value={input} onChange={handleChange} />
+                <button onClick={handleSubmit}>Submit</button>
+                {truePhrase &&
+                    <section>
+                        <h3>{sagePhrase.join(" ")}</h3>
+                        <h4>- {name}</h4>
+                    </section>
+                }
+            </div>
+        )
+    }
+
     return (
-        <div className="sage-main">
-            <h1>This is the page for Sage Wisdom Maker</h1>
-            <h3>Enter Sage Name:</h3>
-            <input type="text" value={name} onChange={handleName} />
-            <br />
-            <h3>Enter Phrase to Sagify:</h3>
-            <input type="text" value={input} onChange={handleChange} />
-            <button onClick={handleSubmit}>Submit</button>
-            {truePhrase &&
-                <section>
-                    <h3>{sagePhrase.join(" ")}</h3>
-                    <h4>- {name}</h4>
-                </section>
-            }
-        </div>
+        showResult ? <SageResults /> : sageMain()
     );
 }
 
