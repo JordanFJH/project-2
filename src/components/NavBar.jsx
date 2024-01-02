@@ -11,6 +11,10 @@ function NavBar(props) {
             <Link to="sage">
                 Sage Wisdom
             </Link>
+            <br />
+            <Link to="synmatch">
+                SynMatch
+            </Link>
             
         </div>
     );
