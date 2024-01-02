@@ -5,9 +5,10 @@
 // https://random-word-api.herokuapp.com/word
 import { useState } from "react";
 
-export function sagefy(word, setSagePhrase, sagePhrase, apiKey) {
+export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
 
     let wordList = [];
+    let shadowSage = sagePhrase;
 
 
     let url = "https://api.api-ninjas.com/v1/thesaurus?word=" + word;

@@ -31,7 +31,7 @@ function SagePage(props) {
         let arr = input.split(" ");
         setTruePhase(true);
         setPhrase(arr);
-        arr.map((word) => { sagefy(word, setSagePhrase, sagePhrase, apiKey) });
+        arr.map((word, index) => { sagefy(word, index, setSagePhrase, sagePhrase, apiKey) });
     }
 
     function sageMain() {
