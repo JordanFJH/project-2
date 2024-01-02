@@ -32,19 +32,8 @@ function SagePage(props) {
         arr.map((word) => { sagefy(word, setSagePhrase, sagePhrase, newWord, setNewWord) });
     }
 
-    // function handleTransform(word) {
-    //      let newWord = sagefy(word);
-    //      setSagePhrase(sagePhrase => [...sagePhrase, newWord])
-    //      sagefy(word, setSagePhrase, sagePhrase)
-    // }   
-
-    function showPhrase(word, index) {
-        return (
-            <h2 key={index}>
-                {word}
-            </h2>
-
-        )
+    function handleEnter() {
+        setShowResult(true);
     }
 
     function sageMain() {
@@ -61,6 +50,7 @@ function SagePage(props) {
                     <section>
                         <h3>{sagePhrase.join(" ")}</h3>
                         <h4>- {name}</h4>
+                        <button onClick={handleEnter}>Enter into contest</button>
                     </section>
                 }
             </div>
@@ -68,7 +58,7 @@ function SagePage(props) {
     }
 
     return (
-        showResult ? <SageResults /> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult}/> : sageMain()
     );
 }
 
