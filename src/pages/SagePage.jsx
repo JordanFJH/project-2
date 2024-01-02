@@ -12,6 +12,8 @@ function SagePage(props) {
     let [showResult, setShowResult] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
     const [phrase, setPhrase] = useState([]);
+    let apiKey = import.meta.env.VITE_Key;
+
 
     function handleChange(e) {
         setInput(e.target.value)
@@ -29,11 +31,7 @@ function SagePage(props) {
         let arr = input.split(" ");
         setTruePhase(true);
         setPhrase(arr);
-        arr.map((word) => { sagefy(word, setSagePhrase, sagePhrase, newWord, setNewWord) });
-    }
-
-    function handleEnter() {
-        setShowResult(true);
+        arr.map((word) => { sagefy(word, setSagePhrase, sagePhrase, apiKey) });
     }
 
     function sageMain() {
@@ -50,7 +48,7 @@ function SagePage(props) {
                     <section>
                         <h3>{sagePhrase.join(" ")}</h3>
                         <h4>- {name}</h4>
-                        <button onClick={handleEnter}>Enter into contest</button>
+                        <button onClick={() => setShowResult(true)}>Enter into contest</button>
                     </section>
                 }
             </div>
@@ -58,7 +56,7 @@ function SagePage(props) {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult}/> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase}/> : sageMain()
     );
 }
 

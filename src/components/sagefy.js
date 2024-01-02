@@ -5,29 +5,51 @@
 // https://random-word-api.herokuapp.com/word
 import { useState } from "react";
 
-export function sagefy(word, setSagePhrase, sagePhrase, newWord, setNewWord) {
+export function sagefy(word, setSagePhrase, sagePhrase, apiKey) {
 
-    const apiKey = import.meta.env.Vite_Key;
+    let wordList = [];
+
+
     let url = "https://api.api-ninjas.com/v1/thesaurus?word=" + word;
     const requestOptions = {
         method: "GET",
         headers: {
-            'Authorization': apiKey
+            'X-Api-Key': apiKey
         }
     }
     async function getData() {
         try {
-            let response = await fetch("https://random-word-api.herokuapp.com/word")
+            let response = await fetch(url, requestOptions)
             let data = await response.json();
-            console.log(data);
-            word = data[0];
+            // console.log(data);
+            // console.log(data.synonyms)
+            wordList = data.synonyms.slice(1, 20);
             chooseWord();
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
+
+    // async function getData() {
+    //     try {
+    //         let response = await fetch("https://random-word-api.herokuapp.com/word")
+    //         let data = await response.json();
+    //         console.log(data);
+    //         word = data[0];
+    //         chooseWord();
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
     function chooseWord() {
+        if (wordList.length === 0) {
+            word = word
+        } else {
+            let randNum = Math.floor(Math.random() * wordList.length)
+            word = wordList[randNum];
+        }
         if (word.slice(-1) === "e" || word.slice(-1) === "E"){// check if the word ends in 'e' to add th
             if (word.toLowerCase() === "the") {
                 word = word
