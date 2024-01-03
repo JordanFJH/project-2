@@ -36,8 +36,12 @@ function SagePage(props) {
             return
         }
         let arr = input.split(" ");
+        let tempArr = []
+        for (let i = 0; i < arr.length; i++){
+            tempArr.push("")
+        }
         setTruePhrase(true)
-        arr.map((word, index) => { sagefy(word, index, setSagePhrase, sagePhrase, apiKey) });
+        arr.map((word, index) => { sagefy(word, index, setSagePhrase, sagePhrase, apiKey, tempArr) });
     }
 
     function handleReset() {
@@ -60,7 +64,7 @@ function SagePage(props) {
                 <button onClick={handleReset}>Reset</button>
                 {truePhrase &&
                     <section>
-                        <h3>{sagePhrase.join(" ")}</h3>
+                        <h3>{sagePhrase?.join(" ")}</h3>
                         <h4>- {name}</h4>
                         <button onClick={() => setShowResult(true)}>Enter into contest</button>
                     </section>

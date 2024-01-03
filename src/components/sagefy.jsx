@@ -4,10 +4,16 @@
 // api for testing 
 // https://random-word-api.herokuapp.com/word
 
-export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
+export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey, tempArr) {
 
     let wordList = [];
-    let shadowSage = sagePhrase;
+    console.log(word, index, "in sagefay")
+    console.log(tempArr)
+    let shadowSage = tempArr;
+    // let arr = Array.apply(null, Array(length))
+    // .map(function () { });
+    // let arr = new Array(length);
+    console.log(shadowSage, "initial shadow sage")
 
 
     let url = "https://api.api-ninjas.com/v1/thesaurus?word=" + word;
@@ -44,13 +50,14 @@ export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
                 word = word + "th";
             }
         }
-        if (index === 0) {
-            shadowSage.unshift(word)
-        } else {
-            shadowSage.splice(index, 0, word)
-        }
+        shadowSage.splice(index, 1, word)
+        // if (index === 0) {
+        //     shadowSage.unshift(word)
+        // } else {
+        //     shadowSage.splice(index, 1, word)
+        // }
 
-        setSagePhrase(shadowSage);
+        setSagePhrase([...shadowSage]);
         console.log(sagePhrase)
         //setSagePhrase(sagePhrase => [...sagePhrase, word])
     }
