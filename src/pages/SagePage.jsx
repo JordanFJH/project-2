@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import SageTransform from "../components/SageTransform";
+import { useState } from "react";
 import SageResults from "./SageResults";
 import { sagefy } from "../components/sagefy";
 
-function SagePage(props) {
+function SagePage() {
 
     let [input, setInput] = useState("");
     let [name, setName] = useState("");
@@ -22,11 +21,6 @@ function SagePage(props) {
         setName(e.target.value);
     }
 
-    // useEffect(() => {
-    //     setPhrase(sagePhrase)
-
-    // }, [sagePhrase])
-
 
     function handleSubmit() {
         if (!input || !name) { // Does nothing if input fields are empty
@@ -36,7 +30,7 @@ function SagePage(props) {
             return
         }
         let arr = input.split(" ");
-        let tempArr = []
+        let tempArr = [] // creates the placeholder for the phrase to be sent into
         for (let i = 0; i < arr.length; i++){
             tempArr.push("")
         }
