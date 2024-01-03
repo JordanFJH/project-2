@@ -5,13 +5,12 @@ import { sagefy } from "../components/sagefy";
 
 function SagePage(props) {
 
-    let [newWord, setNewWord] = useState("");
     let [input, setInput] = useState("");
     let [name, setName] = useState("");
-    let [truePhrase, setTruePhase] = useState(false);
+    let [truePhrase, setTruePhrase] = useState(false);
     let [showResult, setShowResult] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
-    const [phrase, setPhrase] = useState([]);
+    let [phrase, setPhrase] = useState([]);
     let apiKey = import.meta.env.VITE_Key;
 
 
@@ -23,10 +22,10 @@ function SagePage(props) {
         setName(e.target.value);
     }
 
-    useEffect(() => {
-        setPhrase(sagePhrase)
+    // useEffect(() => {
+    //     setPhrase(sagePhrase)
 
-    }, [sagePhrase])
+    // }, [sagePhrase])
 
 
     function handleSubmit() {
@@ -36,10 +35,8 @@ function SagePage(props) {
         if (sagePhrase.length !== 0) {
             return
         }
-        setSagePhrase([]);
         let arr = input.split(" ");
-        setTruePhase(true);
-        setPhrase(arr);
+        setTruePhrase(true)
         arr.map((word, index) => { sagefy(word, index, setSagePhrase, sagePhrase, apiKey) });
     }
 
@@ -47,7 +44,7 @@ function SagePage(props) {
         setInput("");
         setSagePhrase([]);
         setPhrase([]);
-        setTruePhase(false)
+        setTruePhrase(false)
     }
 
     function sageMain() {
