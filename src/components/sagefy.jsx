@@ -45,7 +45,7 @@ export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
     // }
 
     function chooseWord() {
-        if (wordList.length === 0) {
+        if (wordList.length === 0 || word.length < 3) {
             word = word
         } else {
             let randNum = Math.floor(Math.random() * wordList.length)
@@ -58,7 +58,15 @@ export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
                 word = word + "th";
             }
         }
-        setSagePhrase(sagePhrase => [...sagePhrase, word])
+        if (index === 0) {
+            shadowSage.unshift(word)
+        } else {
+            shadowSage.splice(index, 0, word)
+        }
+
+        setSagePhrase(shadowSage);
+        console.log(sagePhrase)
+        //setSagePhrase(sagePhrase => [...sagePhrase, word])
     }
 
     getData();
