@@ -3,7 +3,6 @@
 // the user typed in
 // api for testing 
 // https://random-word-api.herokuapp.com/word
-import { useState } from "react";
 
 export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
 
@@ -30,19 +29,6 @@ export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey) {
             console.log(error)
         }
     }
-
-
-    // async function getData() {
-    //     try {
-    //         let response = await fetch("https://random-word-api.herokuapp.com/word")
-    //         let data = await response.json();
-    //         console.log(data);
-    //         word = data[0];
-    //         chooseWord();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     function chooseWord() {
         if (wordList.length === 0 || word.length < 3) {

@@ -23,15 +23,31 @@ function SagePage(props) {
         setName(e.target.value);
     }
 
+    useEffect(() => {
+        setPhrase(sagePhrase)
+
+    }, [sagePhrase])
+
+
     function handleSubmit() {
         if (!input || !name) { // Does nothing if input fields are empty
             return;
+        }
+        if (sagePhrase.length !== 0) {
+            return
         }
         setSagePhrase([]);
         let arr = input.split(" ");
         setTruePhase(true);
         setPhrase(arr);
         arr.map((word, index) => { sagefy(word, index, setSagePhrase, sagePhrase, apiKey) });
+    }
+
+    function handleReset() {
+        setInput("");
+        setSagePhrase([]);
+        setPhrase([]);
+        setTruePhase(false)
     }
 
     function sageMain() {
@@ -44,6 +60,7 @@ function SagePage(props) {
                 <h3>Enter Phrase to Sagify:</h3>
                 <input type="text" value={input} onChange={handleChange} />
                 <button onClick={handleSubmit}>Submit</button>
+                <button onClick={handleReset}>Reset</button>
                 {truePhrase &&
                     <section>
                         <h3>{sagePhrase.join(" ")}</h3>
