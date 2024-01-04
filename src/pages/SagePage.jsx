@@ -31,7 +31,7 @@ function SagePage() {
         }
         let arr = input.split(" ");
         let tempArr = [] // creates the placeholder for the phrase to be sent into
-        for (let i = 0; i < arr.length; i++){
+        for (let i = 0; i < arr.length; i++) {
             tempArr.push("")
         }
         setTruePhrase(true)
@@ -71,7 +71,7 @@ function SagePage() {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase}/> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} /> : sageMain()
     );
 }
 
