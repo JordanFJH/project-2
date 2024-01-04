@@ -23,6 +23,35 @@ function SagePage() {
         setName(e.target.value);
     }
 
+    function handleResult(e) {
+        switch (e.target.value) {
+            case "Nature":
+                category = "nature"
+                break;
+            case "City":
+                category = "city"
+                break;
+            case "Technology":
+                category = "technology"
+                break;
+            case "Food":
+                category = "food"
+                break;
+            case "Still Life":
+                category = "still_life"
+                break;
+            case "Abstract":
+                category = "abstract"
+                break;
+            case "Wildlife":
+                category = "wildlife"
+                break;
+            default:
+                break;
+        }
+        setShowResult(true)
+    }
+
 
     function handleSubmit() {
         if (!input || !name) { // Does nothing if input fields are empty
@@ -65,8 +94,23 @@ function SagePage() {
                         <h3 className="display-sentence">That same phrase, just more smarter:</h3>
                         <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
                         <h4 className="fancy-phrase">- {name}</h4>
-                        <button onClick={() => setShowResult(true)}>Enter into contest</button>
-                        <br /><br />
+                        <button onClick={() => setDisplayTopics(!displayTopics)}>Pair with a random image Image</button>
+                        {displayTopics &&
+                            <div className="image-select">
+                                <h3>Choose a category you feel best pairs with your smarter quote</h3>
+                                <section className="selections">
+                                    <h4 onClick={handleResult}>Nature</h4>
+                                    <h4>City</h4>
+                                    <h4>Technology</h4>
+                                    <h4>Food</h4>
+                                    <h4>Still Life</h4>
+                                    <h4>Abstract</h4>
+                                    <h4>Wildlife</h4>
+                                </section>
+                            </div>
+
+                        }
+                        <br />
                         <button onClick={handleReset}>Start Over</button>
                     </section>
                 }
@@ -75,7 +119,7 @@ function SagePage() {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} /> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} category={category}/> : sageMain()
     );
 }
 

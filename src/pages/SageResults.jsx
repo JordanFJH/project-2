@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 
 
-function SageResults({ setShowResult, phrase }) {
+function SageResults({ setShowResult, phrase, category }) {
 
     let [imgSrc, setImgSrc] = useState("");
 
-    
+
 
     return (
         <div className="sage-result">
