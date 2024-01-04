@@ -54,12 +54,15 @@ function SagePage() {
                 <br />
                 <h3>Enter Phrase to Sagify:</h3>
                 <input type="text" value={input} onChange={handleChange} />
-                <button onClick={handleSubmit}>Submit</button>
-                <button onClick={handleReset}>Reset</button>
+                <button onClick={handleSubmit}>Smartify</button>
+                <button onClick={handleReset}>Start Over</button>
                 {truePhrase &&
-                    <section>
-                        <h3>{sagePhrase?.join(" ")}</h3>
-                        <h4>- {name}</h4>
+                    <section className="phrase-display">
+                        <h3 className="display-sentence">Your common simpleton phrase: </h3>
+                        <h3 className="user-sentence">{input}</h3>
+                        <h3 className="display-sentence">That same phrase, just more smarter:</h3>
+                        <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
+                        <h4 className="fancy-phrase">- {name}</h4>
                         <button onClick={() => setShowResult(true)}>Enter into contest</button>
                     </section>
                 }
