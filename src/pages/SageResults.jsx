@@ -6,21 +6,14 @@ import { useEffect, useState } from "react";
 function SageResults({ setShowResult, phrase, category, apiKey }) {
 
     let [imgSrc, setImgSrc] = useState("");
-
-    let url = "https://api.api-ninjas.com/v1/randomimage?category=" + category;
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            'X-Api-Key': apiKey,
-            'Accept': 'image/jpg'
-        }
-    }
+    let url = "https://picsum.photos/200"
 
     async function getData() {
         try {
-            let response = await fetch(url, requestOptions)
-            let data = await response.json();
-            console.log(data);
+            let response = await fetch(url)
+            console.log(response)
+            console.log(response.url);
+            setImgSrc(response.url)
         } catch (error) {
             console.log(error)
         }
@@ -32,6 +25,7 @@ function SageResults({ setShowResult, phrase, category, apiKey }) {
         getData()
     }, [])
 
+    // <img src={imgSrc} alt="picture of something" className="sage-img" />
 
     return (
         <div className="sage-result">

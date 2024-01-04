@@ -7,8 +7,6 @@
 export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey, tempArr) {
 
     let wordList = [];
-    console.log(word, index, "in sagefay")
-    console.log(tempArr)
     let shadowSage = tempArr;
 
 
