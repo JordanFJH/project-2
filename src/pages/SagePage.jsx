@@ -11,7 +11,7 @@ function SagePage() {
     let [displayTopics, setDisplayTopics] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
     let [phrase, setPhrase] = useState([]);
-    let category = "";
+    let [category, setCategory] = useState("")
     let apiKey = import.meta.env.VITE_Key;
 
 
@@ -24,27 +24,27 @@ function SagePage() {
     }
 
     function handleResult(e) {
-        switch (e.target.value) {
+        switch (e.target.innerText) {
             case "Nature":
-                category = "nature"
+                setCategory("nature")
                 break;
             case "City":
-                category = "city"
+                setCategory("city")
                 break;
             case "Technology":
-                category = "technology"
+                setCategory("technology")
                 break;
             case "Food":
-                category = "food"
+                setCategory("food")
                 break;
             case "Still Life":
-                category = "still_life"
+                setCategory("still_life")
                 break;
             case "Abstract":
-                category = "abstract"
+                setCategory("abstract")
                 break;
             case "Wildlife":
-                category = "wildlife"
+                setCategory("wildlife")
                 break;
             default:
                 break;
@@ -100,12 +100,12 @@ function SagePage() {
                                 <h3>Choose a category you feel best pairs with your smarter quote</h3>
                                 <section className="selections">
                                     <h4 onClick={handleResult}>Nature</h4>
-                                    <h4>City</h4>
-                                    <h4>Technology</h4>
-                                    <h4>Food</h4>
-                                    <h4>Still Life</h4>
-                                    <h4>Abstract</h4>
-                                    <h4>Wildlife</h4>
+                                    <h4 onClick={handleResult}>City</h4>
+                                    <h4 onClick={handleResult}>Technology</h4>
+                                    <h4 onClick={handleResult}>Food</h4>
+                                    <h4 onClick={handleResult}>Still Life</h4>
+                                    <h4 onClick={handleResult}>Abstract</h4>
+                                    <h4 onClick={handleResult}>Wildlife</h4>
                                 </section>
                             </div>
 

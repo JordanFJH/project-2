@@ -8,6 +8,8 @@ function SageResults({ setShowResult, phrase, category }) {
     let [imgSrc, setImgSrc] = useState("");
 
 
+    
+
 
     return (
         <div className="sage-result">
