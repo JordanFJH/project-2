@@ -8,10 +8,8 @@ function SagePage() {
     let [name, setName] = useState("");
     let [truePhrase, setTruePhrase] = useState(false);
     let [showResult, setShowResult] = useState(false);
-    let [displayTopics, setDisplayTopics] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
     let [phrase, setPhrase] = useState([]);
-    let [category, setCategory] = useState("")
     let apiKey = import.meta.env.VITE_Key;
 
 
@@ -21,35 +19,6 @@ function SagePage() {
 
     function handleName(e) {
         setName(e.target.value);
-    }
-
-    function handleResult(e) {
-        switch (e.target.innerText) {
-            case "Nature":
-                setCategory("nature")
-                break;
-            case "City":
-                setCategory("city")
-                break;
-            case "Technology":
-                setCategory("technology")
-                break;
-            case "Food":
-                setCategory("food")
-                break;
-            case "Still Life":
-                setCategory("still_life")
-                break;
-            case "Abstract":
-                setCategory("abstract")
-                break;
-            case "Wildlife":
-                setCategory("wildlife")
-                break;
-            default:
-                break;
-        }
-        setShowResult(true)
     }
 
 
@@ -94,22 +63,7 @@ function SagePage() {
                         <h3 className="display-sentence">That same phrase, just more smarter:</h3>
                         <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
                         <h4 className="fancy-phrase">- {name}</h4>
-                        <button onClick={() => setDisplayTopics(!displayTopics)}>Pair with a random image Image</button>
-                        {displayTopics &&
-                            <div className="image-select">
-                                <h3>Choose a category you feel best pairs with your smarter quote</h3>
-                                <section className="selections">
-                                    <h4 onClick={handleResult}>Nature</h4>
-                                    <h4 onClick={handleResult}>City</h4>
-                                    <h4 onClick={handleResult}>Technology</h4>
-                                    <h4 onClick={handleResult}>Food</h4>
-                                    <h4 onClick={handleResult}>Still Life</h4>
-                                    <h4 onClick={handleResult}>Abstract</h4>
-                                    <h4 onClick={handleResult}>Wildlife</h4>
-                                </section>
-                            </div>
-
-                        }
+                        <button onClick={() => setShowResult(true)}>Pair with a random Image</button>
                         <br />
                         <button onClick={handleReset}>Start Over</button>
                     </section>
@@ -119,7 +73,7 @@ function SagePage() {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} category={category} apiKey={apiKey}/> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} name={name}/> : sageMain()
     );
 }
 
