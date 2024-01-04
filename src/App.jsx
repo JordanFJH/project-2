@@ -9,7 +9,7 @@ import { Route, Routes } from 'react-router-dom'
 function App() {
 
   return (
-    <div>
+    <div className='all-holder'>
       <NavBar />
       <Routes>
         <Route path='/' element={<MainPage />} />

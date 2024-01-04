@@ -7,6 +7,13 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  margin: 0;
+}
+
+.all-holder {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 a {
@@ -75,5 +82,14 @@ li {
 
 input {
   text-align: center;
+}
+
+.sage-result {
+  height: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgray;
 }
 

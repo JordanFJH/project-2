@@ -30,7 +30,7 @@ function SageResults({ setShowResult, phrase, name }) {
             <div>
                 <img src={imgSrc} className="sage-img" />
                 <h2 className="fancy-phrase">{phrase.join(" ")}</h2>
-                <h2 className="fancy-phrase">{name}</h2>
+                <h2 className="fancy-phrase">- {name}</h2>
             </div>
         )
     }
@@ -38,7 +38,7 @@ function SageResults({ setShowResult, phrase, name }) {
     return (
         <div className="sage-result">
             <button onClick={() => setShowResult(false)}>Return to Smartical</button>
-            <h1>This is the page for the Sage results</h1>
+            <h1>Your phrase sounds even smarter with an image!</h1>
             { imgSrc ? showImage() : <h1 className="loading">Loading Image...</h1> }
             
             
