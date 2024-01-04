@@ -10,10 +10,6 @@ export function sagefy(word, index, setSagePhrase, sagePhrase, apiKey, tempArr) 
     console.log(word, index, "in sagefay")
     console.log(tempArr)
     let shadowSage = tempArr;
-    // let arr = Array.apply(null, Array(length))
-    // .map(function () { });
-    // let arr = new Array(length);
-    console.log(shadowSage, "initial shadow sage")
 
 
     let url = "https://api.api-ninjas.com/v1/thesaurus?word=" + word;

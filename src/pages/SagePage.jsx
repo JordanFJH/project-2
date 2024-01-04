@@ -119,7 +119,7 @@ function SagePage() {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} category={category}/> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} category={category} apiKey={apiKey}/> : sageMain()
     );
 }
 
