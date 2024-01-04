@@ -49,10 +49,11 @@ function SagePage() {
         return (
             <div className="sage-main">
                 <h1>This is the page for Sage Wisdom Maker</h1>
-                <h3>Enter Sage Name:</h3>
+                <h3>Enter Wisdom name:</h3>
                 <input type="text" value={name} onChange={handleName} />
                 <br />
-                <h3>Enter Phrase to Sagify:</h3>
+                <h3>Enter a phrase you want sound more smarter:</h3>
+                <h4>Please make sure there are no extra spaces or apostrophes</h4>
                 <input type="text" value={input} onChange={handleChange} />
                 <button onClick={handleSubmit}>Smartify</button>
                 <button onClick={handleReset}>Start Over</button>

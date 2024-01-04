@@ -1,11 +1,38 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 5px;
+}
+
 
 a {
   text-decoration: none;
   color: black;
+  font-size: 1.3rem;
+  width: 100%;
+  text-align: center;
 }
+
+a:hover {
+  background-color: lightgreen;
+}
+
 
 nav {
   display: flex;
   justify-content: space-around;
-  border: 1px solid black;
+  padding: 10px;
+  width: 100%;
+  padding: 0;
+}
+
+nav h3 {
+  margin: 0;
+  border: 1px black solid;
+  width: 100%;
+}
+
+.fancy-phrase {
+  font-family: cursive;
 }

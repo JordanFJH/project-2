@@ -5,17 +5,17 @@ function NavBar(props) {
     return (
         <nav>
             <Link to="/">
-                Home
+                <h3>Home</h3>
             </Link>
             <br />
             <Link to="sage">
-                Sage Wisdom
+                <h3>Sage Wisdom</h3>
             </Link>
             <br />
             <Link to="synmatch">
-                SynMatch
+                <h3>Syn Match</h3>
             </Link>
-            
+
         </nav>
     );
 }
