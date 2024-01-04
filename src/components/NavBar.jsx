@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function NavBar(props) {
     return (
-        <div className="nav">
+        <nav>
             <Link to="/">
                 Home
             </Link>
@@ -16,7 +16,7 @@ function NavBar(props) {
                 SynMatch
             </Link>
             
-        </div>
+        </nav>
     );
 }
 
