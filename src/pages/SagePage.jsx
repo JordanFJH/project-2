@@ -8,8 +8,10 @@ function SagePage() {
     let [name, setName] = useState("");
     let [truePhrase, setTruePhrase] = useState(false);
     let [showResult, setShowResult] = useState(false);
+    let [displayTopics, setDisplayTopics] = useState(false);
     let [sagePhrase, setSagePhrase] = useState([]);
     let [phrase, setPhrase] = useState([]);
+    let category = "";
     let apiKey = import.meta.env.VITE_Key;
 
 
@@ -52,11 +54,10 @@ function SagePage() {
                 <h3>Enter Wisdom name:</h3>
                 <input type="text" value={name} onChange={handleName} />
                 <br />
-                <h3>Enter a phrase you want sound more smarter:</h3>
+                <h3>Enter a phrase you want to sound more smarter:</h3>
                 <h4>Please make sure there are no extra spaces or apostrophes</h4>
                 <input type="text" value={input} onChange={handleChange} />
                 <button onClick={handleSubmit}>Smartify</button>
-                <button onClick={handleReset}>Start Over</button>
                 {truePhrase &&
                     <section className="phrase-display">
                         <h3 className="display-sentence">Your common simpleton phrase: </h3>
@@ -65,6 +66,8 @@ function SagePage() {
                         <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
                         <h4 className="fancy-phrase">- {name}</h4>
                         <button onClick={() => setShowResult(true)}>Enter into contest</button>
+                        <br /><br />
+                        <button onClick={handleReset}>Start Over</button>
                     </section>
                 }
             </div>
