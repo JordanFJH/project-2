@@ -42,6 +42,10 @@ function SynMatchPage(props) {
     let [syns, setSyns] = useState([]);
     let [ants, setAnts] = useState([]);
     let [allWords, setAllWords] = useState([]);
+    let [antsNeeded, setAntsNeeded] = useState(0);
+    let [synsNeeded, setSynsNeeded] = useState(0);
+    let [chosen, allChosen] = useState(0);
+
     let apiKey = import.meta.env.VITE_Key;
 
     let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -82,6 +86,7 @@ function SynMatchPage(props) {
         let fakeAnts = data.antonyms.slice(0, 5)
         setAnts(fakeAnts)
         fakeSyns = fakeSyns.concat(fakeAnts);
+        shuffle(fakeSyns);
         setAllWords([...fakeSyns])
     }
 
