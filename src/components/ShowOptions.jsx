@@ -4,16 +4,17 @@ function ShowOptions({ word, ants, syns }) {
 
     let [selectedClass, setSelectedClass] = useState("")
     let [wordStatus, setWordStatus] = useState("")
+    let thisWord = "";
 
     if (syns.includes(word)) {
-        setWordStatus("syn")
+        thisWord = "syn"
     }
     if (ants.includes(word)) {
-        setWordStatus("ant")
+        thisWord = "ant"
     }
 
     function selected() {
-        console.log(wordStatus)
+        console.log(thisWord)
     }
 
     return (
