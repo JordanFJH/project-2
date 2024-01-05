@@ -87,9 +87,6 @@ function SynMatchPage(props) {
     }
 
     function setGameUp(data) {
-        if (gameReady) {
-            return
-        }
         let synNeed = 0;
         let antNeed = 0;
         for (let index = 0; index < 3; index++) {
@@ -134,12 +131,16 @@ function SynMatchPage(props) {
                 <h2>The game has ended</h2>
                 <h3>You selected - Antonyms: {antsSelected} - Synonyms: {synsSelected}</h3>
                 <h3>{result}</h3>
+                <button onClick={handleReset}>Reset</button>
             </div>
         )
     }
 
 
     async function getRandomWord() {
+        if (gameReady) {
+            return
+        }
         try {
             let response = await fetch("https://random-word-api.vercel.app/api?words=1")
             let data = await response.json();
@@ -174,7 +175,6 @@ function SynMatchPage(props) {
         <div className="synmatch-main">
             <h1>This is the page for SynMatch!!! Time to do some testing</h1>
             <button onClick={getRandomWord}>Click to Start Game</button>
-            <button onClick={handleReset}>Reset</button>
             { gameReady &&
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
