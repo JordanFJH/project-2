@@ -14,6 +14,7 @@ function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSyns
 
     function selected() {
         if (chosen > 2) {
+            console.log("The game is over")
             setGameOver(true)
             return
         }
@@ -26,6 +27,10 @@ function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSyns
         }
 
         console.log(thisWord)
+        if (chosen > 2) {
+            console.log("The game is over")
+            setGameOver(true)
+        }
         
     }
 

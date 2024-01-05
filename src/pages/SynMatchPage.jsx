@@ -46,6 +46,7 @@ function SynMatchPage(props) {
     let [antsNeeded, setAntsNeeded] = useState(0);
     let [synsNeeded, setSynsNeeded] = useState(0);
     let [chosen, setChosen] = useState(0);
+    let gamyOver = false;
 
     let apiKey = import.meta.env.VITE_Key;
 
@@ -59,7 +60,7 @@ function SynMatchPage(props) {
         }
     }
 
-    function shuffle(array) {
+    function shuffle(array) { // Shuffle Array Function
         let currentIndex = array.length, randomIndex;
 
         // While there remain elements to shuffle.
@@ -78,7 +79,17 @@ function SynMatchPage(props) {
     }
 
 
+    function handleReset() {
+        setGameReady(false)
+        setChosen(0)
+        setAntsSelected(0);
+        setSynsSelected(0);
+    }
+
     function setGameUp(data) {
+        if (gameReady) {
+            return
+        }
         let synNeed = 0;
         let antNeed = 0;
         for (let index = 0; index < 3; index++) {
@@ -99,10 +110,30 @@ function SynMatchPage(props) {
         setGameReady(true)
     }
 
+    function checkIfGameOver() {
+        if (chosen === 3) {
+            gamyOver = true
+        } else {
+            gamyOver = false;
+        }
+        
+    }
+
+    checkIfGameOver();
+
     function showGameOver() {
+        let result = "";
+        if (antsNeeded === antsSelected && synsNeeded === synsSelected) {
+            result = "You Win!!!!!"
+        } else {
+            result = "You lost, try again"
+        }
+
         return (
             <div className="game-over">
                 <h2>The game has ended</h2>
+                <h3>You selected - Antonyms: {antsSelected} - Synonyms: {synsSelected}</h3>
+                <h3>{result}</h3>
             </div>
         )
     }
@@ -142,7 +173,8 @@ function SynMatchPage(props) {
     return (
         <div className="synmatch-main">
             <h1>This is the page for SynMatch!!! Time to do some testing</h1>
-            <button onClick={getRandomWord}>Click for random Word</button>
+            <button onClick={getRandomWord}>Click to Start Game</button>
+            <button onClick={handleReset}>Reset</button>
             { gameReady &&
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
@@ -165,9 +197,9 @@ function SynMatchPage(props) {
                     />)}
                 </div>
                 <h2>Selections: <span>{chosen}</span></h2>
-                {gameOver && showGameOver()}
+                {gamyOver && showGameOver()}
             </section>
-}
+}           
         </div>
     );
 }
