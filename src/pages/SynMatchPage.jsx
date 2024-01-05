@@ -1,9 +1,8 @@
+import { useTimer } from "react-timer-hook";
+
 
 
 function SynMatchPage(props) {
-
-    
-
 
     return (
         <div>
