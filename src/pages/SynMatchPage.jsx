@@ -1,5 +1,7 @@
 import { useTimer } from "react-timer-hook";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import ShowOptions from "../components/ShowOptions";
 
 function MyTimer({ expiryTimestamp, score }) {
 
@@ -37,9 +39,18 @@ function MyTimer({ expiryTimestamp, score }) {
 
 function SynMatchPage(props) {
 
+
+
+
+
     function showTest(num) {
         return (
-            <h4>{num}</h4>
+            <h4 onClick={(e) => {
+                if (e.target.innerText % 2 == 0) {
+                    e.className="correct";
+                }
+                console.log(e.target.innerText)
+            }}>{num}</h4>
         )
     }
 
@@ -55,7 +66,7 @@ function SynMatchPage(props) {
             <h1>This is the page for SynMatch!!! Time to do some testing</h1>
             {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
             <div className="play-area">
-                {testArr.map(showTest)}
+                {testArr.map((num) => <ShowOptions num={num}/>)}
             </div>
         </div>
     );
