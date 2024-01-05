@@ -1,21 +1,23 @@
 import { useState } from "react";
 
-function ShowOptions({ num, setLives, lives }) {
+function ShowOptions({ word, ants, syns }) {
 
     let [selectedClass, setSelectedClass] = useState("")
+    let [wordStatus, setWordStatus] = useState("")
 
+    if (syns.includes(word)) {
+        setWordStatus("syn")
+    }
+    if (ants.includes(word)) {
+        setWordStatus("ant")
+    }
 
     function selected() {
-        if (num % 2 == 0) {
-            setSelectedClass("correct")
-        } else {
-            setSelectedClass("incorrect")
-            setLives(lives - 1)
-        }
+        console.log(wordStatus)
     }
 
     return (
-        <h4 onClick={selected} className={selectedClass}>{num}</h4>
+        <h4 onClick={selected} className={selectedClass}>{word}</h4>
     );
 }
 

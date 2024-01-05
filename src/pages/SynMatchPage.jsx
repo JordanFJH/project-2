@@ -37,6 +37,7 @@ function MyTimer({ expiryTimestamp, score }) {
 function SynMatchPage(props) {
 
     let [lives, setLives] = useState(3);
+    let [gameReady, setGameReady] = useState(false);
     let [randomWord, setRandomWord] = useState("");
     let [syns, setSyns] = useState([]);
     let [ants, setAnts] = useState([]);
@@ -53,6 +54,35 @@ function SynMatchPage(props) {
         headers: {
             'X-Api-Key': apiKey
         }
+    }
+
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle.
+        while (currentIndex > 0) {
+      
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      
+        return array;
+      }
+
+    function setGameUp(data) {
+        let fakeAllWords = [];
+        let fakeSyns = data.synonyms.slice(0, 5);
+        setSyns(fakeSyns)
+        fakeAllWords = [...fakeSyns];
+        let fakeAnts = data.antonyms.slice(0, 5)
+        setAnts(fakeAnts)
+        fakeSyns = fakeSyns.concat(fakeAnts);
+        setAllWords([...fakeSyns])
     }
 
 
@@ -75,9 +105,11 @@ function SynMatchPage(props) {
             let data = await response.json();
             console.log("In wordalikes")
             if (data.synonyms.length < 5 || data.antonyms.length < 5) {
-                console.log("Too little letters")
+                console.log("Too little letters, going to try to call again")
+                getRandomWord();
             } else {
                 console.log("all good")
+                setGameUp(data);
             }
             console.log(data);
         } catch (error) {
@@ -92,11 +124,11 @@ function SynMatchPage(props) {
             <h2>Your Word: {randomWord}</h2>
             {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
             <div className="play-area">
-                {testArr.map((num, index) => <ShowOptions 
-                num={num} 
+                {allWords.map((word, index) => <ShowOptions 
+                word={word} 
                 key={index}
-                lives={lives}
-                setLives={setLives}
+                ants={ants}
+                syns={syns}
                 />)}
             </div>
             <h2>Lives: <span>{lives}</span></h2>
