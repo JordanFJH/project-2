@@ -43,7 +43,7 @@ function SynMatchPage(props) {
     let [allWords, setAllWords] = useState([]);
     let apiKey = import.meta.env.VITE_Key;
 
-    let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     // const time = new Date();
     // time.setSeconds(time.getSeconds() + 10);
@@ -74,7 +74,7 @@ function SynMatchPage(props) {
             let response = await fetch(url, requestOptions)
             let data = await response.json();
             console.log("In wordalikes")
-            if (data.synonyms.length < 8 || data.antonyms.length < 8) {
+            if (data.synonyms.length < 5 || data.antonyms.length < 5) {
                 console.log("Too little letters")
             } else {
                 console.log("all good")
