@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-function ShowOptions({ word, ants, syns, chosen }) {
+function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSynsSelected, synsSelected, setAntsSelected, antsSelected }) {
 
     let [selectedClass, setSelectedClass] = useState("")
-    let [wordStatus, setWordStatus] = useState("")
     let thisWord = "";
 
     if (syns.includes(word)) {
@@ -14,10 +13,20 @@ function ShowOptions({ word, ants, syns, chosen }) {
     }
 
     function selected() {
-        if (chosen >= 3) {
+        if (chosen > 2) {
+            setGameOver(true)
             return
         }
+        setChosen(chosen + 1)
+        setSelectedClass("correct")
+        if (thisWord === "syn") {
+            setSynsSelected(synsSelected + 1);
+        } else {
+            setAntsSelected(antsSelected + 1);
+        }
+
         console.log(thisWord)
+        
     }
 
     return (

@@ -35,19 +35,19 @@ function MyTimer({ expiryTimestamp, score }) {
 
 function SynMatchPage(props) {
 
-    let [lives, setLives] = useState(3);
+    let [synsSelected, setSynsSelected] = useState(0);
+    let [antsSelected, setAntsSelected] = useState(0);
     let [gameReady, setGameReady] = useState(false);
+    let [gameOver, setGameOver] = useState(false)
     let [randomWord, setRandomWord] = useState("");
     let [syns, setSyns] = useState([]);
     let [ants, setAnts] = useState([]);
     let [allWords, setAllWords] = useState([]);
     let [antsNeeded, setAntsNeeded] = useState(0);
     let [synsNeeded, setSynsNeeded] = useState(0);
-    let [chosen, allChosen] = useState(0);
+    let [chosen, setChosen] = useState(0);
 
     let apiKey = import.meta.env.VITE_Key;
-
-    let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     // const time = new Date();
     // time.setSeconds(time.getSeconds() + 10);
@@ -60,24 +60,33 @@ function SynMatchPage(props) {
     }
 
     function shuffle(array) {
-        let currentIndex = array.length,  randomIndex;
-      
+        let currentIndex = array.length, randomIndex;
+
         // While there remain elements to shuffle.
         while (currentIndex > 0) {
-      
-          // Pick a remaining element.
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
         }
-      
+
         return array;
-      }
+    }
+
 
     function setGameUp(data) {
+        let synNeed = 0;
+        let antNeed = 0;
+        for (let index = 0; index < 3; index++) {
+            let randNum = Math.round(Math.random())
+            randNum === 1 ? synNeed += 1 : antNeed += 1
+        }
+        setAntsNeeded(antNeed);
+        setSynsNeeded(synNeed);
         let fakeAllWords = [];
         let fakeSyns = data.synonyms.slice(0, 5);
         setSyns(fakeSyns)
@@ -87,6 +96,15 @@ function SynMatchPage(props) {
         fakeSyns = fakeSyns.concat(fakeAnts);
         shuffle(fakeSyns);
         setAllWords([...fakeSyns])
+        setGameReady(true)
+    }
+
+    function showGameOver() {
+        return (
+            <div className="game-over">
+                <h2>The game has ended</h2>
+            </div>
+        )
     }
 
 
@@ -125,18 +143,31 @@ function SynMatchPage(props) {
         <div className="synmatch-main">
             <h1>This is the page for SynMatch!!! Time to do some testing</h1>
             <button onClick={getRandomWord}>Click for random Word</button>
-            <h2>Your Word: {randomWord}</h2>
-            {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
-            <div className="play-area">
-                {allWords.map((word, index) => <ShowOptions 
-                word={word} 
-                key={index}
-                ants={ants}
-                syns={syns}
-                chosen={chosen}
-                />)}
-            </div>
-            <h2>Lives: <span>{lives}</span></h2>
+            { gameReady &&
+            <section className="game-area">
+                <h2>Your Word: {randomWord}</h2>
+                <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
+                {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
+                <div className="play-area">
+                    {allWords.map((word, index) => <ShowOptions
+                        word={word}
+                        key={index}
+                        ants={ants}
+                        syns={syns}
+                        chosen={chosen}
+                        antsSelected={antsSelected}
+                        setAntsSelected={setAntsSelected}
+                        synsSelected={synsSelected}
+                        setSynsSelected={setSynsSelected}
+                        setChosen={setChosen}
+                        gameOver={gameOver}
+                        setGameOver={setGameOver}
+                    />)}
+                </div>
+                <h2>Selections: <span>{chosen}</span></h2>
+                {gameOver && showGameOver()}
+            </section>
+}
         </div>
     );
 }
