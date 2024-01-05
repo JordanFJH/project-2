@@ -1,6 +1,5 @@
 import { useTimer } from "react-timer-hook";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import ShowOptions from "../components/ShowOptions";
 
 function MyTimer({ expiryTimestamp, score }) {
@@ -134,6 +133,7 @@ function SynMatchPage(props) {
                 key={index}
                 ants={ants}
                 syns={syns}
+                chosen={chosen}
                 />)}
             </div>
             <h2>Lives: <span>{lives}</span></h2>

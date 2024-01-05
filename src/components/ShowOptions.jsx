@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ShowOptions({ word, ants, syns }) {
+function ShowOptions({ word, ants, syns, chosen }) {
 
     let [selectedClass, setSelectedClass] = useState("")
     let [wordStatus, setWordStatus] = useState("")
@@ -14,6 +14,9 @@ function ShowOptions({ word, ants, syns }) {
     }
 
     function selected() {
+        if (chosen >= 3) {
+            return
+        }
         console.log(thisWord)
     }
 
