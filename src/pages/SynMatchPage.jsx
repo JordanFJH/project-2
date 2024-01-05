@@ -31,28 +31,13 @@ function MyTimer({ expiryTimestamp, score }) {
             <button onClick={pause}>Pause</button>
         </div>
     )
-
-
 }
-
 
 
 function SynMatchPage(props) {
 
+    let [lives, setLives] = useState(3);
 
-
-
-
-    function showTest(num) {
-        return (
-            <h4 onClick={(e) => {
-                if (e.target.innerText % 2 == 0) {
-                    e.className="correct";
-                }
-                console.log(e.target.innerText)
-            }}>{num}</h4>
-        )
-    }
 
     let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
@@ -66,8 +51,14 @@ function SynMatchPage(props) {
             <h1>This is the page for SynMatch!!! Time to do some testing</h1>
             {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
             <div className="play-area">
-                {testArr.map((num) => <ShowOptions num={num}/>)}
+                {testArr.map((num, index) => <ShowOptions 
+                num={num} 
+                key={index}
+                lives={lives}
+                setLives={setLives}
+                />)}
             </div>
+            <h2>Lives: <span>{lives}</span></h2>
         </div>
     );
 }

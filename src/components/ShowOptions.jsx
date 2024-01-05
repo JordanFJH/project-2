@@ -1,15 +1,21 @@
 import { useState } from "react";
 
-function ShowOptions({ num }) {
+function ShowOptions({ num, setLives, lives }) {
 
     let [selectedClass, setSelectedClass] = useState("")
 
+
+    function selected() {
+        if (num % 2 == 0) {
+            setSelectedClass("correct")
+        } else {
+            setSelectedClass("incorrect")
+            setLives(lives - 1)
+        }
+    }
+
     return (
-        <h4 onClick={() => {
-            if (num % 2 == 0) {
-                setSelectedClass("correct")
-            }
-        }} className={selectedClass}>{num}</h4>
+        <h4 onClick={selected} className={selectedClass}>{num}</h4>
     );
 }
 
