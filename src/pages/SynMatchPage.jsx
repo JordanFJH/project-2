@@ -179,7 +179,7 @@ function SynMatchPage(props) {
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
                 <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                {/* <MyTimer expiryTimestamp={time} score = {score}/> */}
+                {/* <MyTimer expiryTimestamp={time}/> */}
                 <div className="play-area">
                     {allWords.map((word, index) => <ShowOptions
                         word={word}
