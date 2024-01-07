@@ -1,8 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTimer } from "react-timer-hook";
 
 export default function MyTimer({ expiryTimestamp, gamyOver }) {
-    let tryCounter = 0; // attempt to stop the app from constantly re-rendering
+
+    
+    useEffect(() => {
+        if (gamyOver) {
+            pause();
+        }
+
+    }, [gamyOver])
+
     const {
         totalSeconds,
         seconds,
@@ -20,7 +28,7 @@ export default function MyTimer({ expiryTimestamp, gamyOver }) {
         console.log("Time is up");
     }
 
-    if (gamyOver && tryCounter === 0) {
+    if (gamyOver) {
         console.log("Going to try to pause the game");
     }
 
