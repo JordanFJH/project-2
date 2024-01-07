@@ -23,7 +23,7 @@ function SynMatchPage(props) {
     let apiKey = import.meta.env.VITE_Key;
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 30);
+    time.setSeconds(time.getSeconds() + 10); // sets timer for how long game last
 
     const requestOptions = {
         method: "GET",
@@ -52,8 +52,9 @@ function SynMatchPage(props) {
 
 
     function handleReset() {
-        setGameReady(false)
-        setChosen(0)
+        setGameReady(false);
+        setGameOver(false);
+        setChosen(0);
         setAntsSelected(0);
         setSynsSelected(0);
     }
@@ -151,7 +152,14 @@ function SynMatchPage(props) {
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
                 <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                <MyTimer expiryTimestamp={time} chosen={chosen} gamyOver={gamyOver}/>
+                <MyTimer 
+                    expiryTimestamp={time} 
+                    chosen={chosen} 
+                    gamyOver={gamyOver} 
+                    gameOver={gameOver}
+                    setGameOver={setGameOver}
+                    handleReset={handleReset}
+                    />
                 <div className="play-area">
                     {allWords.map((word, index) => <ShowOptions
                         word={word}

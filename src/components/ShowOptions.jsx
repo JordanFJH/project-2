@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSynsSelected, synsSelected, setAntsSelected, antsSelected }) {
+function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, gameOver, setSynsSelected, synsSelected, setAntsSelected, antsSelected }) {
 
     let [selectedClass, setSelectedClass] = useState("option-holder-unselected")
     let thisWord = "";
@@ -13,7 +13,7 @@ function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSyns
     }
 
     function selected() { //function for when an option is selected
-        if (chosen > 2) {
+        if (chosen > 2 || gameOver === true) {
             console.log("The game is over")
             setGameOver(true)
             return

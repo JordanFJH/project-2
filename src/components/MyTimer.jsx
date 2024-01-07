@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTimer } from "react-timer-hook";
 
-export default function MyTimer({ expiryTimestamp, gamyOver }) {
+export default function MyTimer({ expiryTimestamp, gamyOver, setGameOver, gameOver, handleReset }) {
 
     
     useEffect(() => {
@@ -26,6 +26,7 @@ export default function MyTimer({ expiryTimestamp, gamyOver }) {
 
     function timeUp() {
         console.log("Time is up");
+        setGameOver(true)
     }
 
     if (gamyOver) {
@@ -34,7 +35,11 @@ export default function MyTimer({ expiryTimestamp, gamyOver }) {
 
     return (
         <div className="timer">
-            <h1>Time Remaining: <span>{seconds}</span> </h1>
+            <h1>Time Remaining: { isRunning ? <span className="timer">{seconds}</span> : <span>Time is up</span>} </h1>
+            { gameOver && <>
+            <h2>You ran out of time!  You Lose!</h2>
+            <button onClick={handleReset}>Retry</button>
+            </>}
         </div>
     )
 }
