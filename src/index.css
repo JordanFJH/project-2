@@ -93,13 +93,11 @@ input {
   background-color: lightgray;
 }
 
+/* synmatch Game  styling*/
+
 .synmatch-main {
   height: 100%;
   width: 100%;
-}
-
-.synmatch-main h4 {
-  border: 1px solid black;
 }
 
 .game-area {
@@ -117,10 +115,28 @@ input {
   grid-template-rows: repeat(5, 1fr);
   }
 
-.correct {
+.option-holder-unselected {
+  border: 1px solid black;
+  height: 100%;
+  width: 100%;
+}
+
+.option-holder-selected {
+  background-color: black;
+  border: 1px solid black;
+  height: 100%;
+  width: 100%;
+}
+
+.play-area h4 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.option-holder-unselected:hover {
   background-color: green;
 }
 
-.incorrect {
-  background-color: red;
+.selected {
+  background-color: black;
 }

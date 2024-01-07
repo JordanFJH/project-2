@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSynsSelected, synsSelected, setAntsSelected, antsSelected }) {
 
-    let [selectedClass, setSelectedClass] = useState("")
+    let [selectedClass, setSelectedClass] = useState("option-holder-unselected")
     let thisWord = "";
 
     if (syns.includes(word)) {
@@ -12,14 +12,14 @@ function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSyns
         thisWord = "ant"
     }
 
-    function selected() {
+    function selected() { //function for when an option is selected
         if (chosen > 2) {
             console.log("The game is over")
             setGameOver(true)
             return
         }
         setChosen(chosen + 1)
-        setSelectedClass("correct")
+        setSelectedClass("option-holder-selected")
         if (thisWord === "syn") {
             setSynsSelected(synsSelected + 1);
         } else {
@@ -31,11 +31,13 @@ function ShowOptions({ word, ants, syns, chosen, setChosen, setGameOver, setSyns
             console.log("The game is over")
             setGameOver(true)
         }
-        
+
     }
 
     return (
-        <h4 onClick={selected} className={selectedClass}>{word}</h4>
+        <div onClick={selected} className={selectedClass}>
+            <h4 >{word}</h4>
+        </div>
     );
 }
 
