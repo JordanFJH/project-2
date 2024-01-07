@@ -2,11 +2,14 @@ import { useTimer } from "react-timer-hook";
 import { useState } from "react";
 import ShowOptions from "../components/ShowOptions";
 
-function MyTimer({ expiryTimestamp, score }) {
+function MyTimer({ expiryTimestamp, chosen }) {
 
     function timeUp() {
-        alert("Time is up")
-        console.log(score);
+        console.log("Time is up")
+    }
+
+    if (chosen === 3) {
+        console.log("Going to try to pause the game")
     }
 
     const {
@@ -24,8 +27,7 @@ function MyTimer({ expiryTimestamp, score }) {
 
     return (
         <div className="timer">
-            <h1>Timer Test</h1>
-            <p>{seconds}</p>
+            <h1>Time Remaining: <span>{seconds}</span> </h1>
             <button onClick={start}>Start</button>
             <button onClick={pause}>Pause</button>
         </div>
@@ -50,8 +52,8 @@ function SynMatchPage(props) {
 
     let apiKey = import.meta.env.VITE_Key;
 
-    // const time = new Date();
-    // time.setSeconds(time.getSeconds() + 10);
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 30);
 
     const requestOptions = {
         method: "GET",
@@ -179,7 +181,7 @@ function SynMatchPage(props) {
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
                 <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                {/* <MyTimer expiryTimestamp={time}/> */}
+                <MyTimer expiryTimestamp={time} chosen={chosen}/>
                 <div className="play-area">
                     {allWords.map((word, index) => <ShowOptions
                         word={word}
