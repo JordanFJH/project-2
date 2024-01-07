@@ -2,16 +2,8 @@ import { useTimer } from "react-timer-hook";
 import { useState } from "react";
 import ShowOptions from "../components/ShowOptions";
 
-function MyTimer({ expiryTimestamp, chosen }) {
-
-    function timeUp() {
-        console.log("Time is up")
-    }
-
-    if (chosen === 3) {
-        console.log("Going to try to pause the game")
-    }
-
+function MyTimer({ expiryTimestamp, gamyOver }) {
+    let tryCounter = 0; // attempt to stop the app from constantly re-rendering
     const {
         totalSeconds,
         seconds,
@@ -25,11 +17,17 @@ function MyTimer({ expiryTimestamp, chosen }) {
         restart,
     } = useTimer({ expiryTimestamp, onExpire: timeUp })
 
+    function timeUp() {
+        console.log("Time is up");
+    }
+
+    if (gamyOver && tryCounter === 0) {
+        console.log("Going to try to pause the game");
+    }
+
     return (
         <div className="timer">
             <h1>Time Remaining: <span>{seconds}</span> </h1>
-            <button onClick={start}>Start</button>
-            <button onClick={pause}>Pause</button>
         </div>
     )
 }
@@ -181,7 +179,7 @@ function SynMatchPage(props) {
             <section className="game-area">
                 <h2>Your Word: {randomWord}</h2>
                 <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                <MyTimer expiryTimestamp={time} chosen={chosen}/>
+                <MyTimer expiryTimestamp={time} chosen={chosen} gamyOver={gamyOver}/>
                 <div className="play-area">
                     {allWords.map((word, index) => <ShowOptions
                         word={word}
