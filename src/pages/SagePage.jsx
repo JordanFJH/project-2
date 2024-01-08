@@ -48,24 +48,26 @@ function SagePage() {
     function sageMain() {
         return (
             <div className="sage-main">
-                <h1>This is the page for Sage Wisdom Maker</h1>
-                <h3>Enter Wisdom name:</h3>
-                <input type="text" value={name} onChange={handleName} />
-                <br />
-                <h3>Enter a phrase you want to sound more smarter:</h3>
-                <h4>Please make sure there are no extra spaces or apostrophes</h4>
-                <input type="text" value={input} onChange={handleChange} />
-                <button onClick={handleSubmit}>Smartify</button>
+                <div className="sage-intro">
+                    <h1>This is a page to help generate Instagram style content</h1>
+                    <h3>Enter a smart sounding name:</h3>
+                    <input type="text" value={name} onChange={handleName} placeholder="Jordan The Wise" />
+                    <br />
+                    <h3>Enter a simple phrase for us to make more intelligent:</h3>
+                    <h3>!!PLEASE MAKE SURE THERE ARE NO EXTRA SPACES OR APOSTROPHES!!</h3>
+                    <input type="text" value={input} onChange={handleChange} placeholder="I Like to run" />
+                    <button onClick={handleSubmit} className="smartify-button">Smartify</button>
+                </div>
                 {truePhrase &&
                     <section className="phrase-display">
-                        <h3 className="display-sentence">Your common simpleton phrase: </h3>
+                        <h3 className="display-sentence">Your common phrase: </h3>
                         <h3 className="user-sentence">{input}</h3>
-                        <h3 className="display-sentence">That same phrase, just more smarter:</h3>
+                        <h3 className="display-sentence">That same phrase, just a little more intelligent:</h3>
                         <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
                         <h4 className="fancy-phrase">- {name}</h4>
-                        <button onClick={() => setShowResult(true)}>Pair with a random Image</button>
+                        <button onClick={() => setShowResult(true)} className="picture-button">Pair with a random Image</button>
                         <br />
-                        <button onClick={handleReset}>Start Over</button>
+                        <button onClick={handleReset} className="sage-reset">Start Over</button>
                     </section>
                 }
             </div>
@@ -73,7 +75,7 @@ function SagePage() {
     }
 
     return (
-        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} name={name}/> : sageMain()
+        showResult ? <SageResults setShowResult={setShowResult} phrase={sagePhrase} name={name} /> : sageMain()
     );
 }
 

@@ -9,11 +9,11 @@ function NavBar(props) {
             </Link>
             <br />
             <Link to="sage">
-                <h3>Sage Wisdom</h3>
+                <h3>InstaInstagram</h3>
             </Link>
             <br />
             <Link to="synmatch">
-                <h3>Syn Match</h3>
+                <h3>SynAntMatch</h3>
             </Link>
 
         </nav>
