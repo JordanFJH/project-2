@@ -23,7 +23,7 @@ function SynMatchPage(props) {
     let apiKey = import.meta.env.VITE_Key;
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 30); // sets timer for how long game last
+    time.setSeconds(time.getSeconds() + 900); // sets timer for how long game last
 
     const requestOptions = {
         method: "GET",
@@ -86,7 +86,7 @@ function SynMatchPage(props) {
         } else {
             gamyOver = false;
         }
-        
+
     }
 
     checkIfGameOver();
@@ -146,41 +146,43 @@ function SynMatchPage(props) {
 
     return (
         <div className="synmatch-main">
-            <h1>This is the page for SynAntMatch!!!</h1>
-            <h2>--For more information on how the game is played, visit the home page--</h2>
-            <button onClick={getRandomWord}>Click to Start Game</button>
-            { gameReady &&
-            <section className="game-area">
-                <h2>Your Word: {randomWord}</h2>
-                <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                <MyTimer 
+            <div className="synmatch-intro">
+                <h1>Welcome to SynAntMatch!!!</h1>
+                <h2 class="m-0">--For more information on how the game is played, visit the home page--</h2>
+                <button onClick={getRandomWord} className="sage-button">Click to Start Game</button>
+            </div>
+            {gameReady &&
+                <section className="game-area">
+                    <h2>Your Word: {randomWord}</h2>
+                    <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
+                    {/* <MyTimer 
                     expiryTimestamp={time} 
                     chosen={chosen} 
                     gamyOver={gamyOver} 
                     gameOver={gameOver}
                     setGameOver={setGameOver}
                     handleReset={handleReset}
-                    />
-                <div className="play-area">
-                    {allWords.map((word, index) => <ShowOptions
-                        word={word}
-                        key={index}
-                        ants={ants}
-                        syns={syns}
-                        chosen={chosen}
-                        antsSelected={antsSelected}
-                        setAntsSelected={setAntsSelected}
-                        synsSelected={synsSelected}
-                        setSynsSelected={setSynsSelected}
-                        setChosen={setChosen}
-                        gameOver={gameOver}
-                        setGameOver={setGameOver}
-                    />)}
-                </div>
-                <h2>Selections: <span>{chosen}</span></h2>
-                {gamyOver && showGameOver()}
-            </section>
-}           
+                    /> */}
+                    <div className="play-area">
+                        {allWords.map((word, index) => <ShowOptions
+                            word={word}
+                            key={index}
+                            ants={ants}
+                            syns={syns}
+                            chosen={chosen}
+                            antsSelected={antsSelected}
+                            setAntsSelected={setAntsSelected}
+                            synsSelected={synsSelected}
+                            setSynsSelected={setSynsSelected}
+                            setChosen={setChosen}
+                            gameOver={gameOver}
+                            setGameOver={setGameOver}
+                        />)}
+                    </div>
+                    <h2>Selections: <span>{chosen}</span></h2>
+                    {gamyOver && showGameOver()}
+                </section>
+            }
         </div>
     );
 }

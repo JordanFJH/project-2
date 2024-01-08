@@ -194,6 +194,13 @@ input {
   align-items: center;
 }
 
+.synmatch-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .game-area {
   display: flex;
   flex-direction: column;
