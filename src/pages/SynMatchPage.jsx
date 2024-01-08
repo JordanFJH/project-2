@@ -115,6 +115,7 @@ function SynMatchPage(props) {
         if (gameReady) {
             return
         }
+        setLoading(true);
         try {
             let response = await fetch("https://random-word-api.vercel.app/api?words=1")
             let data = await response.json();
@@ -145,15 +146,9 @@ function SynMatchPage(props) {
         }
     }
 
-    return (
-        <div className="synmatch-main">
-            { gameReady === false ? 
-            <div className="synmatch-intro">
-                <h1>Welcome to SynAntMatch!!!</h1>
-                <h2 class="m-0">--For more information on how the game is played, visit the home page--</h2>
-                <button onClick={getRandomWord} className="sage-button">Click to Start Game</button>
-            </div> :
-            <section className="game-area">
+    function gameData() {
+        return (
+        <section className="game-area">
                 <h2>Your Word: <span className="chosen-word">{randomWord.toUpperCase()}</span></h2>
                 <h2 class="m-0">This is what I want:</h2>
                 <h2>Antonyms: <span class="text-red-700">{antsNeeded}</span> -- Synonyms: <span class="text-green-700">{synsNeeded}</span></h2>
@@ -184,7 +179,37 @@ function SynMatchPage(props) {
                 <h2>Selections: <span>{chosen}</span></h2>
                 {gamyOver && showGameOver()}
             </section>
+        )
 }
+
+    function gameIntro() {
+        return (
+            <div className="synmatch-intro">
+                <h1>Welcome to SynAntMatch!!!</h1>
+                <h2 class="m-0">--For more information on how the game is played, visit the home page--</h2>
+                <button onClick={getRandomWord} className="sage-button">Click to Start Game</button>
+            </div>
+        )
+    }
+
+    function gameLoading() {
+        return (
+            <h1>The game is loading</h1>
+        )
+    }
+    
+    function chooseGameLoading() {
+        if (loading) {
+            return gameLoading();
+        } else {
+            return gameIntro();
+        }
+    }
+
+    return (
+        <div className="synmatch-main">
+            { gameReady === false ? chooseGameLoading() : gameData() }
+            {/* { gameReady === false ? gameIntro() : gameData()} */}
         </div>
     );
 }
