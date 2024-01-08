@@ -7,6 +7,7 @@ import MyTimer from "../components/MyTimer";
 
 function SynMatchPage(props) {
 
+    let [loading, setLoading] = useState(false);
     let [synsSelected, setSynsSelected] = useState(0);
     let [antsSelected, setAntsSelected] = useState(0);
     let [gameReady, setGameReady] = useState(false);
@@ -104,7 +105,7 @@ function SynMatchPage(props) {
                 <h2>The game has ended</h2>
                 <h3>You selected - Antonyms: {antsSelected} - Synonyms: {synsSelected}</h3>
                 <h3>{result}</h3>
-                <button onClick={handleReset}>Reset</button>
+                <button onClick={handleReset} className="sage-button">Reset</button>
             </div>
         )
     }
@@ -146,16 +147,17 @@ function SynMatchPage(props) {
 
     return (
         <div className="synmatch-main">
+            { gameReady === false ? 
             <div className="synmatch-intro">
                 <h1>Welcome to SynAntMatch!!!</h1>
                 <h2 class="m-0">--For more information on how the game is played, visit the home page--</h2>
                 <button onClick={getRandomWord} className="sage-button">Click to Start Game</button>
-            </div>
-            {gameReady &&
-                <section className="game-area">
-                    <h2>Your Word: {randomWord}</h2>
-                    <h2>I want Antonyms: <span>{antsNeeded}</span> and Synonyms: <span>{synsNeeded}</span></h2>
-                    {/* <MyTimer 
+            </div> :
+            <section className="game-area">
+                <h2>Your Word: <span className="chosen-word">{randomWord.toUpperCase()}</span></h2>
+                <h2 class="m-0">This is what I want:</h2>
+                <h2>Antonyms: <span class="text-red-700">{antsNeeded}</span> -- Synonyms: <span class="text-green-700">{synsNeeded}</span></h2>
+                {/* <MyTimer 
                     expiryTimestamp={time} 
                     chosen={chosen} 
                     gamyOver={gamyOver} 
@@ -163,26 +165,26 @@ function SynMatchPage(props) {
                     setGameOver={setGameOver}
                     handleReset={handleReset}
                     /> */}
-                    <div className="play-area">
-                        {allWords.map((word, index) => <ShowOptions
-                            word={word}
-                            key={index}
-                            ants={ants}
-                            syns={syns}
-                            chosen={chosen}
-                            antsSelected={antsSelected}
-                            setAntsSelected={setAntsSelected}
-                            synsSelected={synsSelected}
-                            setSynsSelected={setSynsSelected}
-                            setChosen={setChosen}
-                            gameOver={gameOver}
-                            setGameOver={setGameOver}
-                        />)}
-                    </div>
-                    <h2>Selections: <span>{chosen}</span></h2>
-                    {gamyOver && showGameOver()}
-                </section>
-            }
+                <div className="play-area">
+                    {allWords.map((word, index) => <ShowOptions
+                        word={word}
+                        key={index}
+                        ants={ants}
+                        syns={syns}
+                        chosen={chosen}
+                        antsSelected={antsSelected}
+                        setAntsSelected={setAntsSelected}
+                        synsSelected={synsSelected}
+                        setSynsSelected={setSynsSelected}
+                        setChosen={setChosen}
+                        gameOver={gameOver}
+                        setGameOver={setGameOver}
+                    />)}
+                </div>
+                <h2>Selections: <span>{chosen}</span></h2>
+                {gamyOver && showGameOver()}
+            </section>
+}
         </div>
     );
 }

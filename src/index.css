@@ -195,6 +195,7 @@ input {
 }
 
 .synmatch-intro {
+  background-color: lightgray;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -210,6 +211,7 @@ input {
 }
 
 .play-area {
+  background-color: lightgray;
   justify-content: space-evenly;
   width: 75%;
   height: 50%;
@@ -246,4 +248,8 @@ input {
 
 .timer {
   color: red;
+}
+
+.chosen-word {
+  font-weight: bolder;
 }
