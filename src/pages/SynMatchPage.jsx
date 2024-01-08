@@ -7,6 +7,7 @@ import MyTimer from "../components/MyTimer";
 
 function SynMatchPage(props) {
 
+    let staticLoading = false;
     let [loading, setLoading] = useState(false);
     let [synsSelected, setSynsSelected] = useState(0);
     let [antsSelected, setAntsSelected] = useState(0);
@@ -24,7 +25,7 @@ function SynMatchPage(props) {
     let apiKey = import.meta.env.VITE_Key;
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 900); // sets timer for how long game last
+    time.setSeconds(time.getSeconds() + 30); // sets timer for how long game last
 
     const requestOptions = {
         method: "GET",
@@ -119,9 +120,9 @@ function SynMatchPage(props) {
         try {
             let response = await fetch("https://random-word-api.vercel.app/api?words=1")
             let data = await response.json();
-            console.log(data);
             setRandomWord(data[0]);
             getWordAlikes(data[0]);
+            setLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -132,15 +133,11 @@ function SynMatchPage(props) {
         try {
             let response = await fetch(url, requestOptions)
             let data = await response.json();
-            console.log("In wordalikes")
             if (data.synonyms.length < 5 || data.antonyms.length < 5) {
-                console.log("Too little letters, going to try to call again")
                 getRandomWord();
             } else {
-                console.log("all good")
                 setGameUp(data);
             }
-            console.log(data);
         } catch (error) {
             console.log(error)
         }
@@ -152,14 +149,14 @@ function SynMatchPage(props) {
                 <h2>Your Word: <span className="chosen-word">{randomWord.toUpperCase()}</span></h2>
                 <h2 class="m-0">This is what I want:</h2>
                 <h2>Antonyms: <span class="text-red-700">{antsNeeded}</span> -- Synonyms: <span class="text-green-700">{synsNeeded}</span></h2>
-                {/* <MyTimer 
+                <MyTimer 
                     expiryTimestamp={time} 
                     chosen={chosen} 
                     gamyOver={gamyOver} 
                     gameOver={gameOver}
                     setGameOver={setGameOver}
                     handleReset={handleReset}
-                    /> */}
+                    />
                 <div className="play-area">
                     {allWords.map((word, index) => <ShowOptions
                         word={word}
