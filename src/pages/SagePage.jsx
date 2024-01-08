@@ -50,24 +50,26 @@ function SagePage() {
             <div className="sage-main">
                 <div className="sage-intro">
                     <h1>This is a page to help generate Instagram style content</h1>
-                    <h3>Enter a smart sounding name:</h3>
+                    <h3>Enter a smart sounding name or username:</h3>
                     <input type="text" value={name} onChange={handleName} placeholder="Jordan The Wise" />
                     <br />
                     <h3>Enter a simple phrase for us to make more intelligent:</h3>
                     <h3>!!PLEASE MAKE SURE THERE ARE NO EXTRA SPACES OR APOSTROPHES!!</h3>
                     <input type="text" value={input} onChange={handleChange} placeholder="I Like to run" />
-                    <button onClick={handleSubmit} className="smartify-button">Smartify</button>
+                    <button onClick={handleSubmit} className="sage-button">Smartify</button>
                 </div>
                 {truePhrase &&
                     <section className="phrase-display">
                         <h3 className="display-sentence">Your common phrase: </h3>
                         <h3 className="user-sentence">{input}</h3>
                         <h3 className="display-sentence">That same phrase, just a little more intelligent:</h3>
+                        <h4 class="m-0">(side-note: words ending with "e" will have "eth" on the end to sound like old english)</h4>
+                        <h4 class="m-0">(sider-note: old english = sounding smarter)</h4>
                         <h3 className="fancy-phrase">{sagePhrase?.join(" ")}</h3>
                         <h4 className="fancy-phrase">- {name}</h4>
-                        <button onClick={() => setShowResult(true)} className="picture-button">Pair with a random Image</button>
-                        <br />
-                        <button onClick={handleReset} className="sage-reset">Start Over</button>
+                        <button onClick={() => setShowResult(true)} className="sage-button">Pair with a random Image</button>
+                        <br /> <br />
+                        <button onClick={handleReset} className="sage-button">Start Over</button>
                     </section>
                 }
             </div>

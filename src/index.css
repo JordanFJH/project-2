@@ -155,7 +155,7 @@ input {
 }
 
 .sage-result {
-  height: 95%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -163,15 +163,22 @@ input {
   background-color: lightgray;
 }
 
-.smartify-button {
+.image-shown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sage-button {
   color: yellow;
   margin-left: 30px;
+  margin-top: 15px;
   border-radius: 50px;
   background-color: green;
   transform: scale(1.5);
 }
 
-.smartify-button:hover {
+.sage-button:hover {
   transform: scale(1.7);
   color: green;
   background-color: yellow;
