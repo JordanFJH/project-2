@@ -146,7 +146,8 @@ function SynMatchPage(props) {
 
     return (
         <div className="synmatch-main">
-            <h1>This is the page for SynMatch!!! Time to do some testing</h1>
+            <h1>This is the page for SynAntMatch!!!</h1>
+            <h2>--For more information on how the game is played, visit the home page--</h2>
             <button onClick={getRandomWord}>Click to Start Game</button>
             { gameReady &&
             <section className="game-area">
