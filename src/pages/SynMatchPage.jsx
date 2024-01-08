@@ -122,7 +122,6 @@ function SynMatchPage(props) {
             let data = await response.json();
             setRandomWord(data[0]);
             getWordAlikes(data[0]);
-            setLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -137,6 +136,7 @@ function SynMatchPage(props) {
                 getRandomWord();
             } else {
                 setGameUp(data);
+                setLoading(false);
             }
         } catch (error) {
             console.log(error)
