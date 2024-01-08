@@ -103,9 +103,9 @@ function SynMatchPage(props) {
         return (
             <div className="game-over">
                 <h2>The game has ended</h2>
-                <h3>You selected - Antonyms: {antsSelected} - Synonyms: {synsSelected}</h3>
-                <h3>{result}</h3>
-                <button onClick={handleReset} className="sage-button">Reset</button>
+                <h3 class="m-0">You selected - Antonyms: {antsSelected} - Synonyms: {synsSelected}</h3>
+                <h3 class="mb-0">{result}</h3>
+                <button onClick={handleReset} className="game-reset">Reset</button>
             </div>
         )
     }
@@ -176,7 +176,7 @@ function SynMatchPage(props) {
                         setGameOver={setGameOver}
                     />)}
                 </div>
-                <h2>Selections: <span>{chosen}</span></h2>
+                <h2 class="m-0">Selections: <span>{chosen}</span></h2>
                 {gamyOver && showGameOver()}
             </section>
         )
@@ -209,7 +209,6 @@ function SynMatchPage(props) {
     return (
         <div className="synmatch-main">
             { gameReady === false ? chooseGameLoading() : gameData() }
-            {/* { gameReady === false ? gameIntro() : gameData()} */}
         </div>
     );
 }

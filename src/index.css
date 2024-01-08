@@ -253,3 +253,23 @@ input {
 .chosen-word {
   font-weight: bolder;
 }
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-reset {
+  background-color: green;
+  color: yellow;
+  transform: scale(1.5);
+  margin-top: 15px;
+  border-radius: 50px;
+}
+
+.game-reset:hover {
+  transform: scale(1.7);
+  color: green;
+  background-color: yellow;
+}
