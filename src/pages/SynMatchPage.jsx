@@ -23,7 +23,7 @@ function SynMatchPage(props) {
     let apiKey = import.meta.env.VITE_Key;
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 10); // sets timer for how long game last
+    time.setSeconds(time.getSeconds() + 30); // sets timer for how long game last
 
     const requestOptions = {
         method: "GET",
